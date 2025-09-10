@@ -1,0 +1,33 @@
+# node
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# dotenv
+.env
+.env.local
+
+# build front
+/build
+/dist
+
+# logs
+logs
+*.log
+*.pid
+*.seed
+*.tgz
+
+# system
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# coverage (tests)
+coverage/
+
+# mongo dump
+dump/
