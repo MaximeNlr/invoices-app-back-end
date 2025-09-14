@@ -1,4 +1,5 @@
 const Invoice = require('../models/invoice');
+const demoInvoices = require('../data/demo.json');
 
 exports.CreateInvoice = async (req, res) => {
     try {
@@ -31,7 +32,7 @@ exports.GetAllInvoices = async (req, res) => {
 exports.GetInvoice = async (req, res) => {
     try {
         const invoice = await Invoice.findOne({invoiceId: req.params.id})
-        res.status(201).json({ success: true, message: "Invoice created successfully", data: invoice });
+        res.status(201).json({ success: true, message: "Invoice created successfully", invoice: invoice });
 
     } catch (error) {
         res.status(500).json({ success: false });
@@ -91,5 +92,24 @@ exports.DeleteInvoice = async (req, res) => {
           }
     } catch (error) {
         res.status(500).json({ success: false });
+    }
+}
+
+exports.ResetDemo = async (req, res) => {
+    try {
+        
+        const deleteInvoices = await Invoice.deleteMany();
+        console.log(deleteInvoices.deletedCount, 'invoices deleted')
+        const insertDemo = await Invoice.insertMany(demoInvoices);
+
+       if (!insertDemo) {
+        return res.status(500).json({success: false})
+       }
+
+       return res.status(201).json({success: true})
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({success: false})
     }
 }

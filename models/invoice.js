@@ -42,7 +42,10 @@ const invoiceSchema = new mongoose.Schema({
 
 invoiceSchema.pre("save", async function (next) {
     if (this.itemInfo && this.itemInfo.length > 0) {
-      this.totalAmount = this.itemInfo.reduce((sum, item) => sum + item.total, 0);
+      this.totalAmount = this.itemInfo.reduce(
+        (sum, item) => sum + Math.round(item.total * 100),
+        0
+      );
     } else {
       this.totalAmount = 0;
     }
@@ -52,15 +55,37 @@ invoiceSchema.pre("save", async function (next) {
       const randomNumbers = Math.floor(1000 + Math.random() * 9000);
       this.invoiceId = `${randomLetters}${randomNumbers}`;
     }
-
+  
     if (this.invoiceInfo?.date && this.invoiceInfo?.terms) {
-        const baseDate = new Date(this.invoiceInfo.date);
-        const termsDays = parseInt(this.invoiceInfo.terms, 10) || 0;
-        baseDate.setDate(baseDate.getDate() + termsDays);
-        this.paymentDue = baseDate;
-      }
+      const baseDate = new Date(this.invoiceInfo.date);
+      const termsDays = parseInt(this.invoiceInfo.terms, 10) || 0;
+      baseDate.setDate(baseDate.getDate() + termsDays);
+      this.paymentDue = baseDate;
+    }
   
     next();
   });
+  
+  invoiceSchema.pre("findOneAndUpdate", function (next) {
+    const update = this.getUpdate();
+  
+    if (update.$set?.itemInfo) {
+      const itemInfo = update.$set.itemInfo;
+      update.$set.totalAmount =
+        itemInfo && itemInfo.length > 0
+          ? itemInfo.reduce((sum, item) => sum + Math.round(item.total * 100), 0)
+          : 0;
+    }
+  
+    if (update.$set?.invoiceInfo?.date && update.$set?.invoiceInfo?.terms) {
+      const baseDate = new Date(update.$set.invoiceInfo.date);
+      const termsDays = parseInt(update.$set.invoiceInfo.terms, 10) || 0;
+      baseDate.setDate(baseDate.getDate() + termsDays);
+      update.$set.paymentDue = baseDate;
+    }
+  
+    next();
+  });
+  
 
 module.exports = mongoose.model("Invoice", invoiceSchema);
