@@ -8,18 +8,17 @@ const routes = require('./routes/routes');
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://invoices-app-beta.vercel.app/"
+  "https://invoices-app-beta.vercel.app"
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin);
+      callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
-  },
-  credentials: true,
+  }
 }));
 
 app.use(express.json());
