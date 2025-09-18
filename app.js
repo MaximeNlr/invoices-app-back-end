@@ -8,7 +8,7 @@ const routes = require('./routes/routes');
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://invoice-app.vercel.app"
+  "https://invoices-app-beta.vercel.app/"
 ];
 
 app.use(cors({
