@@ -24,11 +24,11 @@
             {
                 "name": "Brand Guidelines",
                 "quantity": 1,
-                "price": 1800.9,
-                "total": 1800.9
+                "price": 1800.90,
+                "total": 1800.90
             }
         ],
-        "totalAmount": 1800.9,
+        "totalAmount": 180090,
         "paymentDue": "2021-08-19",
         "status": "paid"
     },
@@ -57,17 +57,17 @@
             {
                 "name": "Banner Design",
                 "quantity": 1,
-                "price": 156,
-                "total": 156
+                "price": 156.00,
+                "total": 156.00
             },
             {
                 "name": "Email Design",
                 "quantity": 2,
-                "price": 200,
-                "total": 400
+                "price": 200.00,
+                "total": 400.00
             }
         ],
-        "totalAmount": 556,
+        "totalAmount": 55600,
         "paymentDue": "2021-09-20",
         "status": "pending"
     },
@@ -100,7 +100,7 @@
                 "total": 14002.33
             }
         ],
-        "totalAmount": 14002.33,
+        "totalAmount": 1400233,
         "paymentDue": "2021-10-01",
         "status": "paid"
     },
@@ -133,7 +133,7 @@
                 "total": 102.04
             }
         ],
-        "totalAmount": 102.04,
+        "totalAmount": 10204,
         "paymentDue": "2021-10-12",
         "status": "pending"
     },
@@ -168,11 +168,11 @@
             {
                 "name": "Brand Guidelines",
                 "quantity": 1,
-                "price": 2500,
-                "total": 2500
+                "price": 2500.00,
+                "total": 2500.00
             }
         ],
-        "totalAmount": 4032.33,
+        "totalAmount": 403233,
         "paymentDue": "2021-10-14",
         "status": "pending"
     },
@@ -205,7 +205,7 @@
                 "total": 6155.91
             }
         ],
-        "totalAmount": 6155.91,
+        "totalAmount": 615591,
         "paymentDue": "2021-10-31",
         "status": "pending"
     },
@@ -238,7 +238,7 @@
                 "total": 3102.04
             }
         ],
-        "totalAmount": 3102.04,
+        "totalAmount": 310204,
         "paymentDue": "2021-11-12",
         "status": "draft"
     }

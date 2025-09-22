@@ -66,6 +66,7 @@ exports.UpdateInvoice = async (req, res) => {
                 clientInfo: req.body.clientInfo,
                 itemInfo: req.body.itemInfo,
                 invoiceInfo: req.body.invoiceInfo,
+                totalAmount: req.body.totalAmount
             }},
             { new: true } 
         );
