@@ -22,8 +22,16 @@ exports.CreateInvoice = async (req, res) => {
 
 exports.GetAllInvoices = async (req, res) => {
     try {
-        const invoices = await Invoice.find()
-        return res.status(200).json({success: true, data: invoices})
+        const filteredInvoices = await Invoice.find({status: req.query.status})
+        
+        if (filteredInvoices.length === 0) {
+            const invoices = await Invoice.find();
+            if (!invoices) {
+                return
+            }
+            return res.status(200).json({success: true, invoices: invoices})
+        }
+        return res.status(200).json({success: true, invoices: filteredInvoices})
     } catch (error) {
         res.status(500).json({ success: false });
     }
